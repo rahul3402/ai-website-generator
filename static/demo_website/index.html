@@ -1,0 +1,32 @@
+
+<head> <title>$$$title$$$</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script src="handleform.js"></script>
+  </head>
+<div class="container">
+	
+	<div id="logo"><p>$$$logo$$$</p></div>
+
+       <form class="detectForm" onsubmit="return handleForm()" name="detectForm"><div>
+          <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="$$$placeholder$$$" id="url" type="text" name="url"></textarea><br />
+          <input type="submit" class="button" value="Predict" id="submit"/></div>
+
+    </form>
+
+	
+    <div id="info"><p>$$$blurb$$$</p></div>
+      <div id="innerContainer">
+      	
+      <div class="results" id="loading"><img src="/images/loading.gif" id="loadingImage" alt="Loading results..."/></div>
+      <div class="results" id="results-text"></div>
+    </div>
+  </div>
+
+
+
+
+
+
