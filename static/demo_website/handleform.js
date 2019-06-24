@@ -35,7 +35,7 @@ function showError(message){
 
 function handleForm(){
   showLoading();
-  var url = e.target.url.value;
+  var url = 'http://potato';
   if (url.length == 0){
     showError("Make sure you have entered a valid URL.");
     return;
