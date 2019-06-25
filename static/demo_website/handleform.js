@@ -2,29 +2,23 @@ function showLoading(){
   loading = document.getElementById("loading");
   info = document.getElementById("info");
   text = document.getElementById("results-text");
+  error = document.getElementById("error");
 
   info.style.opacity = 0;
   text.style.opacity = 0;
   loading.style.opacity = 1;
+  error.style.opacity = 0;
 }
-function showReal(){
-  body = document.body;
-  body.style.backgroundColor = "#009900";
-  real = document.getElementById("real");
+function showResults(result){
+  loading = document.getElementById("loading");
+  text = document.getElementById("results-text");
   loading.style.opacity = 0;
-  real.style.opacity = 1;
-}
-function showFake(){
-  body = document.body;
-  body.style.backgroundColor = "#c00000";
-  fake = document.getElementById("fake");
-  loading.style.opacity = 0;
-  fake.style.opacity = 1;
+  text.style.opacity = 1;
+  text.innerText = result;
 }
 function showError(message){
-  body = document.body;
-  body.style.backgroundColor = "#444";
   error = document.getElementById("error");
+  loading = document.getElementById("loading");
   loading.style.opacity = 0;
   error.style.opacity = 1;
   if (message){
@@ -33,57 +27,46 @@ function showError(message){
   }
 }
 
+var prediction_class_names = ["Real", "Fake"];
+
 function handleForm(){
   showLoading();
-  var url = 'http://potato';
-  if (url.length == 0){
-    showError("Make sure you have entered a valid URL.");
+  var input = document.getElementById('url').value;
+  if (input.length == 0){
+    showError("Make sure you have entered a valid input.");
     return;
   }
-  if (url.indexOf("http") == -1){
-    url = "http://".concat(url);
-  }
-  var l = document.createElement("a");
-  l.href = url;
-  shortenedURL = l.protocol + "//" + l.hostname;
-  console.log(shortenedURL);
-  HTTP.get("/detect?url=" + encodeURIComponent(shortenedURL), {}, function(error, response){
-    console.log(error);
-    response = JSON.parse(response.content);
-    console.log(response);
-    if (error){
-      e.target.url.focus();
-      e.target.url.blur();
-      e.target.url.focus();
-      e.target.url.placeholder = e.target.url.value;
-      e.target.url.value = '';
+  var input_field = document.getElementById('url');
+  console.log(input);
+  $.get("predict?input=" + encodeURIComponent(input), function(data, status){
+    console.log(status);
+    console.log(data);
+    if (status == 'error'){
+      input_field.focus();
+      input_field.blur();
+      input_field.focus();
+      input_field.placeholder = input;
+      input_field.value = '';
       showError("There was an error reaching our server.");
     } else {
-      if (response.error){
-        e.target.url.focus();
-        e.target.url.blur();
-        e.target.url.focus();
-        e.target.url.placeholder = e.target.url.value;
-        e.target.url.value = '';
-        showError("There was an error reaching the site. Make sure the URL is valid.");
+      if (data.error){
+        input_field.focus();
+        input_field.blur();
+        input_field.focus();
+        input_field.placeholder = input;
+        input_field.value = '';
+        showError("There was an error reaching the site. Make sure the input is valid.");
       } else {
-        if (response.fake){
-          e.target.url.focus();
-          e.target.url.blur();
-          e.target.url.focus();
-          e.target.url.placeholder = e.target.url.value;
-          e.target.url.value = '';
-          showFake();
-        } else {
-          e.target.url.focus();
-          e.target.url.blur();
-          e.target.url.focus();
-          e.target.url.placeholder = e.target.url.value;
-          e.target.url.value = '';
-          showReal();
-        }
+        input_field.focus();
+        input_field.blur();
+        input_field.focus();
+        input_field.placeholder = input;
+        input_field.value = '';
+
+        console.log(data.prediction);
+        var class_name = prediction_class_names[data.prediction];
+
       }
     }
   });
-  return false;
 }

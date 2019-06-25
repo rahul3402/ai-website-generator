@@ -7,7 +7,7 @@
 }
  
 body {
-  background-color: #e8e8e8;
+  background-color: #d8d8d8;
   transition: background-color .75s ease;
   font-family: "Open Sans", "Helvetica Neue", "Arial", sans-serif;
   color: #212121;
@@ -38,7 +38,11 @@ body {
   min-height: 220px;
 }
 
-#info, .results {
+h2 {
+  font-family: 
+}
+
+#info, .results, #results-text {
   text-align: center;
   margin-bottom:160px;
   margin-top: 15px;
@@ -66,7 +70,7 @@ body {
 }
 
 h2 {
-  font-family: "Norwester";
+  font-family: "Montserrat", "Helvetica Neue", "Arial", sans-serif;
   margin-bottom: 10px;
   font-size:40px;
 }
