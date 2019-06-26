@@ -1,0 +1,34 @@
+
+<head> <title>$$$title$$$</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="static/style.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="static/handleform.js"></script>
+  </head>
+<div class="container">
+	
+	<div id="logo"><p>$$$logo$$$</p></div>
+
+       <form class="detectForm" onsubmit="handleForm(); return false;" name="detectForm"><div>
+          <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="$$$placeholder$$$" id="url" type="text" name="url"></textarea><br />
+          <input type="submit" class="button" value="Predict" id="submit"/></div>
+
+    </form>
+
+	
+    <div id="info"><p>$$$blurb$$$</p></div>
+      <div id="innerContainer">
+      	
+      <div class="results" id="loading"><img src="static/images/loading.gif" id="loadingImage" alt="Loading results..."/></div>
+      <div class="results" id="results-text"><h2 id="resultsMessage"></h2></div>
+      <div class="results" id="error"><h2>Error!</h2><span id="errorMessage"></span></div>
+    </div>
+  </div>
+
+
+
+
+
+
